@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minutes Prompt Generator</title>
+<style>
+:root{--navy:#102a43;--navy2:#174a7e;--blue:#2563eb;--pale:#eef5ff;--bg:#edf3f9;--text:#102033;--muted:#526579;--border:#a8b7c7;--green:#177245;--red:#b42318;--white:#fff;--focus:#ffbf47}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#e8f0f8,#f8fbff);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;padding:28px 16px}button,input,select,textarea{font:inherit}.shell{max-width:980px;margin:auto}.card{background:#fff;border:1px solid #c5d1dc;border-radius:24px;box-shadow:0 18px 46px rgba(16,42,67,.14);padding:32px}.hidden{display:none!important}h1{font-size:clamp(1.9rem,4vw,3rem);line-height:1.1;margin:0 0 12px;color:var(--navy)}h2{font-size:1.25rem;margin:0}.lead{font-size:1.1rem;color:var(--muted);margin:0 0 28px}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:28px 0}.flow-item{border:2px solid #c5d1dc;border-radius:16px;padding:16px 10px;text-align:center;font-weight:700;background:#f8fbff}.flow-num{display:block;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;line-height:30px;margin:0 auto 9px}.privacy{padding:13px 16px;background:#eaf7ef;border-left:5px solid var(--green);border-radius:8px;color:#194f35;font-weight:650}.btn{border:2px solid transparent;border-radius:12px;padding:12px 18px;font-weight:750;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.15s}.btn:hover{transform:translateY(-1px)}.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:4px solid var(--focus);outline-offset:2px}.primary{background:var(--navy);color:#fff}.primary:hover{background:#071d31}.secondary{background:#fff;color:var(--navy);border-color:var(--navy)}.welcome .btn{margin-top:26px;font-size:1.05rem}.topbar{display:flex;justify-content:space-between;align-items:start;gap:16px;margin-bottom:22px}.eyebrow{color:var(--blue);font-size:.83rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800}.section{background:#f8fafc;border:1px solid #cbd5e1;border-radius:18px;padding:22px;margin:16px 0}.section-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:18px}.badge{font-size:.75rem;background:var(--navy);color:#fff;border-radius:999px;padding:5px 9px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.field{display:flex;flex-direction:column;gap:6px}.full{grid-column:1/-1}label{font-weight:720}.req{color:var(--red)}.optional{color:var(--muted);font-size:.82rem;font-weight:500}input,select,textarea{width:100%;border:2px solid var(--border);background:#fff;color:var(--text);border-radius:10px;padding:11px 12px}textarea{min-height:82px;resize:vertical}.error-text{min-height:16px;color:var(--red);font-size:.82rem;font-weight:700}.invalid{border-color:var(--red)!important;background:#fff7f6!important}.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.choice input{position:absolute;opacity:0;pointer-events:none}.choice label{height:100%;border:2px solid var(--border);background:#fff;border-radius:11px;padding:11px;text-align:center;cursor:pointer;display:flex;align-items:center;justify-content:center}.choice input:checked+label{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.2)}.choice input:checked+label:before{content:"✓ ";font-weight:900}.check-list{display:grid;gap:10px}.check{display:flex;align-items:flex-start;gap:11px;padding:12px;border:2px solid var(--border);border-radius:11px;background:#fff;cursor:pointer}.check:has(input:checked){border-color:var(--navy);background:#eaf2ff}.check input{width:20px;height:20px;accent-color:var(--navy);flex:0 0 auto}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.status{margin-top:14px;border-radius:10px;padding:12px 14px;font-weight:750}.success{background:#e8f7ef;color:#155c38;border:1px solid #55a77a}.error{background:#fff0ef;color:#8f1d16;border:1px solid #e09b95}.output{margin-top:18px;border:2px solid #91a4b7;border-radius:16px;padding:18px;background:#eef5ff}.output-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.prompt{white-space:pre-wrap;background:#fff;border:1px solid #aebdcc;border-radius:12px;padding:17px;max-height:430px;overflow:auto;line-height:1.55;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.88rem;margin-top:14px}.next{color:#294c6e;margin:6px 0 0}.footer-note{text-align:center;color:var(--muted);font-size:.83rem;margin-top:16px}@media(max-width:720px){body{padding:12px}.card{padding:22px 16px}.flow{grid-template-columns:1fr}.flow-item{display:flex;align-items:center;text-align:left;gap:10px;padding:10px}.flow-num{margin:0}.grid,.choices{grid-template-columns:1fr}.topbar{flex-direction:column}.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<main class="shell">
+<section class="card welcome" id="welcome">
+  <div class="eyebrow">Standalone browser tool</div>
+  <h1>Minutes Prompt Generator</h1>
+  <p class="lead">Create a clear AI workflow for accurate meeting minutes.</p>
+  <div class="flow" aria-label="Five-step workflow">
+    <div class="flow-item"><span class="flow-num">1</span>Enter details</div>
+    <div class="flow-item"><span class="flow-num">2</span>Copy prompt</div>
+    <div class="flow-item"><span class="flow-num">3</span>AI asks for notes</div>
+    <div class="flow-item"><span class="flow-num">4</span>Verify extraction</div>
+    <div class="flow-item"><span class="flow-num">5</span>Generate minutes</div>
+  </div>
+  <div class="privacy">Your transcript is not entered, uploaded, or stored here.</div>
+  <button class="btn primary" id="startBtn">Start creating prompt →</button>
+</section>
+
+<section class="card hidden" id="builder">
+  <div class="topbar"><div><div class="eyebrow">Prompt setup</div><h1 style="font-size:2rem">Minutes Prompt Generator</h1><p class="lead" style="margin:7px 0 0">Add only the context your AI needs.</p></div><button class="btn secondary" id="backBtn">← How it works</button></div>
+  <form id="promptForm" novalidate>
+    <section class="section">
+      <div class="section-title"><h2>1. Meeting details</h2><span class="badge">* Required</span></div>
+      <div class="grid">
+        <div class="field full"><label for="topic">What is the meeting about? <span class="req">*</span></label><input id="topic" required placeholder="e.g. Compressor upgrade design review"><div class="error-text" id="topicError"></div></div>
+        <div class="field"><label for="date">Date <span class="req">*</span></label><input type="date" id="date" required><div class="error-text" id="dateError"></div></div>
+        <div class="field"><label for="time">Time <span class="req">*</span></label><input type="time" id="time" required><div class="error-text" id="timeError"></div></div>
+        <div class="field full"><label for="venue">Venue or platform <span class="req">*</span></label><input id="venue" required placeholder="e.g. Meeting Room 3 or Microsoft Teams"><div class="error-text" id="venueError"></div></div>
+        <div class="field full"><label for="attendees">Attendees <span class="req">*</span></label><textarea id="attendees" required placeholder="e.g. A. Rahman (Chair), S. Lee, M. Kumar"></textarea><div class="error-text" id="attendeesError"></div></div>
+        <div class="field"><label for="project">Project or department <span class="optional">Optional</span></label><input id="project" placeholder="e.g. Engineering"></div>
+        <div class="field"><label for="chair">Chairperson <span class="optional">Optional</span></label><input id="chair" placeholder="Name or role"></div>
+        <div class="field"><label for="meetingType">Meeting type <span class="optional">Optional</span></label><select id="meetingType"><option>General meeting</option><option>Project meeting</option><option>Technical review</option><option>Design review</option><option>Management meeting</option></select></div>
+        <div class="field"><label for="language">Output language</label><select id="language"><option>English</option><option>Bahasa Melayu</option></select></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title"><h2>2. Minutes style</h2></div>
+      <label>Level of detail</label>
+      <div class="choices" style="margin-top:8px">
+        <div class="choice"><input type="radio" name="detail" id="concise" value="Concise"><label for="concise">Concise</label></div>
+        <div class="choice"><input type="radio" name="detail" id="standard" value="Standard" checked><label for="standard">Standard</label></div>
+        <div class="choice"><input type="radio" name="detail" id="detailed" value="Detailed"><label for="detailed">Detailed</label></div>
+      </div>
+      <div class="field" style="margin-top:16px"><label for="summary">Executive summary</label><select id="summary"><option>3 key points</option><option>Short paragraph</option><option>None</option></select></div>
+    </section>
+
+    <section class="section">
+      <div class="section-title"><h2>3. Workflow options</h2><span class="badge">Recommended</span></div>
+      <div class="check-list">
+        <label class="check"><input type="checkbox" id="verify" checked><span><strong>Verify before writing minutes</strong><br><span class="optional">AI pauses for your approval.</span></span></label>
+        <label class="check"><input type="checkbox" id="unclear" checked><span><strong>Identify missing or unclear information</strong></span></label>
+        <label class="check"><input type="checkbox" id="decisions" checked><span><strong>Separate proposals from confirmed decisions</strong></span></label>
+        <label class="check"><input type="checkbox" id="technical" checked><span><strong>Preserve technical terms and references</strong></span></label>
+        <label class="check"><input type="checkbox" id="multipart" checked><span><strong>Allow notes or transcript in multiple parts</strong></span></label>
+        <label class="check"><input type="checkbox" id="risks"><span><strong>Include risks and issues</strong></span></label>
+        <label class="check"><input type="checkbox" id="basis"><span><strong>Show source basis for action items during verification</strong></span></label>
+        <label class="check"><input type="checkbox" id="anon"><span><strong>Anonymise names by role</strong></span></label>
+      </div>
+    </section>
+
+    <div class="actions"><button type="submit" class="btn primary" id="generateBtn">Generate prompt</button><button type="button" class="btn secondary" id="resetBtn">Reset</button></div>
+    <div id="formStatus" aria-live="polite"></div>
+  </form>
+
+  <section class="output hidden" id="output">
+    <div class="output-head"><div><h2>Prompt ready</h2><p class="next">Copy it and paste it into your AI assistant.</p></div><div class="actions" style="margin:0"><button class="btn primary" id="copyBtn">Copy prompt</button><button class="btn secondary" id="downloadBtn">Download .txt</button></div></div>
+    <div class="prompt" id="promptText" tabindex="0"></div>
+    <div id="actionStatus" aria-live="polite"></div>
+  </section>
+  <p class="footer-note">Runs locally in your browser. No server, API, tracking, or storage.</p>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);const welcome=$('welcome'),builder=$('builder');
+$('startBtn').onclick=()=>{welcome.classList.add('hidden');builder.classList.remove('hidden');$('topic').focus()};
+$('backBtn').onclick=()=>{builder.classList.add('hidden');welcome.classList.remove('hidden');$('startBtn').focus()};
+const required=[['topic','Enter what the meeting is about.'],['date','Select the meeting date.'],['time','Select the meeting time.'],['venue','Enter the venue or platform.'],['attendees','Enter the attendees.']];
+function val(id){return $(id).value.trim()}function yes(id){return $(id).checked?'Yes':'No'}
+function validate(){let first=null,missing=0;required.forEach(([id,msg])=>{const el=$(id),err=$(id+'Error');if(!val(id)){el.classList.add('invalid');err.textContent=msg;first??=el;missing++}else{el.classList.remove('invalid');err.textContent=''}});if(first){$('formStatus').className='status error';$('formStatus').textContent=`Complete ${missing} required field${missing>1?'s':''} to continue.`;first.focus();return false}$('formStatus').className='';$('formStatus').textContent='';return true}
+required.forEach(([id])=>$(id).addEventListener('input',()=>{$(id).classList.remove('invalid');$(id+'Error').textContent=''}));
+function buildPrompt(){const detail=document.querySelector('input[name="detail"]:checked').value;return `ROLE\nYou are an AI meeting-minutes assistant. Help the user turn meeting notes, a transcript, or both into accurate professional minutes.\n\nMEETING CONTEXT\nMeeting topic: ${val('topic')}\nDate: ${val('date')}\nTime: ${val('time')}\nVenue or platform: ${val('venue')}\nAttendees: ${val('attendees')}\nProject or department: ${val('project')||'Not specified'}\nChairperson: ${val('chair')||'Not specified'}\nMeeting type: ${val('meetingType')}\nOutput language: ${val('language')}\nDetail level: ${detail}\nExecutive summary: ${val('summary')}\n\nWORKFLOW SETTINGS\nRequire verification before final minutes: ${yes('verify')}\nIdentify missing or unclear information: ${yes('unclear')}\nSeparate proposals from confirmed decisions: ${yes('decisions')}\nPreserve technical terms, measurements, equipment tags, document numbers and references: ${yes('technical')}\nAllow source material in multiple messages: ${yes('multipart')}\nInclude risks and issues: ${yes('risks')}\nShow source basis for action items during verification: ${yes('basis')}\nAnonymise names by role: ${yes('anon')}\n\nFOLLOW THESE STAGES IN ORDER\n\nSTAGE 1: REQUEST SOURCE MATERIAL\n1. Briefly acknowledge the meeting context.\n2. Ask the user to provide their notes, transcript, or both directly to you.\n3. If multiple-part submission is enabled, accept several messages and ask the user to type SOURCE COMPLETE when finished.\n4. Do not draft minutes yet. Begin with Stage 1 only.\n\nSTAGE 2: EXTRACT\nAfter all source material is received, extract: participants mentioned, topics, key discussion points, confirmed decisions, proposals, action items, owners, due dates, risks or issues if enabled, open questions, and unclear or conflicting information. Never invent facts, owners, deadlines, or decisions.\n\nSTAGE 3: VERIFY\nPresent a concise verification summary. Clearly label Confirmed, Unclear, Missing, Inferred, or Conflicting information. For each action show the task, owner, due date${$('basis').checked?', and supporting source basis':''}. Ask for corrections and explicit approval. Do not draft the final minutes before approval.${$('verify').checked?' This verification pause is mandatory.':''}\n\nSTAGE 4: GENERATE MINUTES\nOnly after approval, produce: Meeting Details; Attendance; Purpose or Agenda; Executive Summary as configured; Decisions Made; Action Items; Key Discussion Points${$('risks').checked?'; Risks and Issues':''}; Open Matters; and Next Meeting or Follow-up. Use neutral professional language and the configured detail level. User corrections override the initial extraction. Use “Not specified” rather than guessing.\n\nBegin with Stage 1 only.`}
+$('promptForm').onsubmit=e=>{e.preventDefault();if(!validate())return;const btn=$('generateBtn');btn.disabled=true;btn.textContent='Creating prompt…';setTimeout(()=>{$('promptText').textContent=buildPrompt();$('output').classList.remove('hidden');$('formStatus').className='status success';$('formStatus').textContent='Prompt created successfully.';btn.disabled=false;btn.textContent='Generate prompt';$('output').scrollIntoView({behavior:'smooth',block:'start'});$('copyBtn').focus()},250)};
+function feedback(msg,type='success'){$('actionStatus').className='status '+type;$('actionStatus').textContent=msg;clearTimeout(feedback.t);feedback.t=setTimeout(()=>{$('actionStatus').className='';$('actionStatus').textContent=''},3500)}
+$('copyBtn').onclick=async()=>{const text=$('promptText').textContent,btn=$('copyBtn');try{await navigator.clipboard.writeText(text)}catch(e){const r=document.createRange();r.selectNode($('promptText'));getSelection().removeAllRanges();getSelection().addRange(r);document.execCommand('copy');getSelection().removeAllRanges()}btn.textContent='✓ Copied';feedback('Copied. Paste it into your AI assistant to begin.');setTimeout(()=>btn.textContent='Copy prompt',2200)};
+$('downloadBtn').onclick=()=>{const blob=new Blob([$('promptText').textContent],{type:'text/plain'}),url=URL.createObjectURL(blob),a=document.createElement('a');const name=(val('topic')||'meeting').replace(/[^a-z0-9]+/gi,'_').replace(/^_|_$/g,'').toLowerCase();a.href=url;a.download=`${name}_minutes_prompt.txt`;a.click();URL.revokeObjectURL(url);feedback(`Downloaded: ${a.download}`)};
+$('resetBtn').onclick=()=>{if(!confirm('Clear all entered information?'))return;$('promptForm').reset();required.forEach(([id])=>{$(id).classList.remove('invalid');$(id+'Error').textContent=''});$('output').classList.add('hidden');$('formStatus').textContent='';$('topic').focus()};
+</script>
+</body>
+</html>
