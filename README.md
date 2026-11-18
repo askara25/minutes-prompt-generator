@@ -11,8 +11,6 @@ The tool does **not** collect or process meeting transcripts. It prepares the me
 
 ## Live Demo
 
-After enabling GitHub Pages, add your link here:
-
 [`https://askara25.github.io/minutes-prompt-generator/`](https://askara25.github.io/minutes-prompt-generator)
 
 ## Key Features
